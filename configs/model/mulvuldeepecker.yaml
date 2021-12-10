@@ -1,0 +1,54 @@
+# @package _global_
+name: mulvuldeepecker
+
+sensi_api_path: resources/sensiAPI.txt
+no_api_path: resources/noAPI.txt
+
+
+dataset:
+  name: example
+  token:
+    max_parts: 50
+    is_wrapped: false
+    is_splitted: false
+    vocabulary_size: 190000
+
+global_encoder:
+  embedding_size: 50
+  rnn_size: 300
+  use_bi_rnn: true
+  embedding_dropout: 0.25
+  rnn_num_layers: 1
+  rnn_dropout: 0.5
+
+local_encoder:
+  embedding_size: 50
+  rnn_size: 200
+  use_bi_rnn: true
+  embedding_dropout: 0.25
+  rnn_num_layers: 1
+  rnn_dropout: 0.5
+
+classifier:
+  n_hidden_layers: 3
+  hidden_size: 500
+  activation: tanh
+
+hyper_parameters:
+  vector_length: 50
+  seq_len: 50
+
+  n_epochs: 60
+  patience: 5
+  reload_dataloader: true
+  batch_size: 64
+  test_batch_size: 64
+  clip_norm: 0
+  random_context: true
+  shuffle_data: true
+
+  optimizer: "Adamax"
+  nesterov: true
+  learning_rate: 0.001
+  weight_decay: 0
+  decay_gamma: 0.95

@@ -1,0 +1,16 @@
+# @package _global_
+defaults:
+  - model: token
+
+seed: 7
+num_workers: 8
+log_offline: false
+
+# data keys
+raw_data_folder: /home/chengxiao/dataset/vul
+data_folder: /home/public/rmt/chengxiao/vul_detect/data
+
+save_every_epoch: 1
+val_every_epoch: 1
+log_every_epoch: 10
+progress_bar_refresh_rate: 1
