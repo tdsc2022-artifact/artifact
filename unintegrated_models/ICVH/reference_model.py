@@ -27,24 +27,24 @@ class BLSTM(nn.Module):
         self._config = config
         self._vocabulary = vocabulary
         self.init_layers()
-
+        
     def init_layers(self):
         # embedding
         self.token_embedding = nn.Embedding(
             len(self._vocabulary.token_to_id),
-            128,
-            padding_idx=self._vocabulary.token_to_id[PAD])
+            self.embedding_size,
+            padding_idx = self._vocabulary.token_to_id[PAD])
         self.relu = nn.ReLU()
         self.optimizer = Adam(self.parameters(),
-                         0.001,
-                         weight_decay=0.1)
+                         self._config.learning_rate,
+                         self._config.weight_decay)
        
         # BLSTM layer
         self.blstm_layer = nn.LSTM(
-            input_size=128,
-            hidden_size=256,
-            num_layers=1,
-            bidirectional=True,
+            input_size = self._config.blstm_input_size,
+            hidden_size = self._config.blstm_hidden_size,
+            num_layers = self._config.blstm_num_layers,
+            bidirectional = True,
         )
         # layer for attention
         # self.att_layer = LuongAttention(self.hidden_size)
@@ -52,20 +52,20 @@ class BLSTM(nn.Module):
         self.dropout_rnn = nn.Dropout(0.5)
         # MLP
         layers = [
-            nn.Linear(256,
-                      256),
+            nn.Linear(self._config.mlp_hidden_size,
+                      self._config.mlp_hidden_size),
             self.relu,
             nn.Dropout(0.5)
         ]
         for _ in range(2):
             layers += [
-                nn.Linear(256,
-                          256),
+                nn.Linear(self._config.mlp_hidden_size,
+                          self._config.mlp_hidden_size),
                 self.relu,
                 nn.Dropout(0.5)
             ]
         self.hidden_layers = nn.Sequential(*layers)
-        self.out_layer = nn.Linear(256, 2)
+        self.out_layer = nn.Linear(self._config.mlp_hidden_size, 2)
         self.device =  torch.device("cuda:{}".format(0) if torch.cuda.is_available() else "cpu")
         if torch.cuda.is_available():
             self.cuda(0)
