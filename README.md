@@ -4,7 +4,7 @@
 
 **This toolkit contains implementations of all learning-based vulnerability detection methods used in the paper**
 
-###  For popular vulnerability detection methods, we build a unified framework. You can adapt to different datasets and train different models only by modifying the parameter settings。
+###  For popular vulnerability detection methods, we build a unified framework. You can adapt to different datasets and train different models only by modifying the parameter settings.
 
 | methods         | paper                                                        |
 | --------------- | ------------------------------------------------------------ |
