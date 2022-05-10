@@ -8,7 +8,6 @@ from preprocessing.dot_generator import generate_bc_VFG, generate_bc_VFG_osp, ge
 import os
 # from utils.common import CWEID_AVA, CWEID_ADOPT
 from preprocessing import token_preprocess
-from scripts.generate_sample_all import preprocess_d2a
 from preprocessing import c2s_preprocess
 from utils.xml_parser import  getCodeIDtoPathDict_osp, create_osp_source_code ,create_d2a_source_code
 from os.path import join
@@ -17,5 +16,5 @@ import json
 if __name__ == "__main__":
    
     config = get_config("code2vec","CWE20")
-    # preprocess_d2a('code2vec', 'NULLPTR_DEREFERENCE')
+    preprocess_d2a('code2vec', 'NULLPTR_DEREFERENCE')
     

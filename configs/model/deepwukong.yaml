@@ -1,0 +1,51 @@
+# @package _global_
+name: deepwukong
+gpu: 1
+dataset:
+  name: example
+  token:
+    max_parts: 50
+    is_wrapped: false
+    is_splitted: false
+    vocabulary_size: 190000
+gnn:
+  hidden_size: 128
+  pooling_ratio: 0.8
+  layer_num: 4
+
+classifier:
+  hidden_size: 128
+  n_hidden_layers: 2
+  drop_out: 0.5
+  classifier_input_size: 64
+  activation: relu
+
+hyper_parameters:
+  vector_length: 64
+  n_epochs: 10
+  patience: 5
+  batch_size: 64
+  test_batch_size: 64
+  reload_dataloader: true
+  clip_norm: 0
+  random_context: true
+  shuffle_data: true
+  log_interval: 1
+  optimizer: "Adam"
+  nesterov: true
+  learning_rate: 0.001
+  weight_decay: 0
+  decay_gamma: 0.95
+cl:
+  n_epochs: 30
+  cv_n_folds: 5
+  batch_size: 128
+  thresholds: 0.7
+dt:
+  ds_count: 500
+  drop_out: 0.5
+  n_epochs: 20
+  delta: 0.001
+  vote_rate: 0.5
+  contamination: 0.1
+  model_name: "deepwukong"

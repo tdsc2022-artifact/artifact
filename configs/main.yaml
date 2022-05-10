@@ -7,8 +7,8 @@ num_workers: 8
 log_offline: false
 
 # data keys
-raw_data_folder: /home/chengxiao/dataset/vul
-data_folder: /home/public/rmt/chengxiao/vul_detect/data
+raw_data_folder: dataset/vul
+data_folder: data
 
 save_every_epoch: 1
 val_every_epoch: 1

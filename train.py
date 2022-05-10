@@ -1,7 +1,9 @@
 from argparse import ArgumentParser
+from ast import mod
 import os
 from os.path import join
 from typing import Tuple
+from regex import D
 
 import torch
 from omegaconf import DictConfig
@@ -10,7 +12,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping, Learning
 from pytorch_lightning.loggers import WandbLogger, TensorBoardLogger
 
 from models import TOKEN_BLSTM, VDP_BLSTM, SYS_BGRU, SYSDataModule, VGD_GNN, TokenDataModule, VDPDataModule, VGDDataModule, MulVDP_BLSTM, MulVDPDataModule, Code2SeqAttn, C2SPathContextDataModule, Code2VecAttn, C2VPathContextDataModule
-
+from models import DWK_GNN, DWKDataModule, RevealDataModule, RevealModel
 from utils.callback import UploadCheckpointCallback, PrintEpochResultCallback, CollectResCallback
 from utils.common import print_config, filter_warnings, get_config, CWEID_ADOPT
 from utils.vocabulary import Vocabulary_token, Vocabulary_c2s
@@ -72,6 +74,19 @@ def get_SYS(
     data_module = SYSDataModule(config, vocabulary)
     return model, data_module
 
+def get_DWK(
+    config: DictConfig, vocabulary: Vocabulary_token
+) -> Tuple[LightningModule, LightningDataModule]:
+    model = DWK_GNN(config, vocabulary)
+    data_module = DWKDataModule(config, vocabulary)
+    return model, data_module
+
+def get_REVEAL(
+    config: DictConfig, vocabulary: Vocabulary_token
+) -> Tuple[LightningModule, LightningDataModule]:
+    model = RevealModel(config, vocabulary)
+    data_module = RevealDataModule(config, vocabulary)
+    return model, data_module
 
 def train(config: DictConfig, resume_from_checkpoint: str = None):
     filter_warnings()
@@ -85,7 +100,9 @@ def train(config: DictConfig, resume_from_checkpoint: str = None):
         "sysevr": get_SYS,
         "mulvuldeepecker": get_MULVDP,
         "code2seq": get_C2S,
-        "code2vec": get_C2V
+        "code2vec": get_C2V,
+        "reveal": get_REVEAL,
+        "deepwukong": get_DWK
     }
 
     vocab = {
@@ -95,7 +112,9 @@ def train(config: DictConfig, resume_from_checkpoint: str = None):
         "sysevr": Vocabulary_token,
         "mulvuldeepecker": Vocabulary_token,
         "code2seq": Vocabulary_c2s,
-        "code2vec": Vocabulary_c2s
+        "code2vec": Vocabulary_c2s,
+        "reveal": Vocabulary_token,
+        "deepwukong": Vocabulary_token
     }
     if config.name not in known_models:
         print(f"Unknown model: {config.name}, try on of {known_models.keys()}")

@@ -1,3 +1,4 @@
+import imp
 from .token.token_blstm import TOKEN_BLSTM
 from .vuldeepecker.VDP_blstm import VDP_BLSTM
 from .sysevr.SYS_bgru import SYS_BGRU
@@ -12,9 +13,13 @@ from .code2seq.code2seq_attn import Code2SeqAttn
 from .code2seq.path_context_data_module import C2SPathContextDataModule
 from .code2vec.code2vec_attn import Code2VecAttn
 from .code2vec.path_context_data_module import C2VPathContextDataModule
+from .deepwukong.DWK_data_module import DWKDataModule
+from .deepwukong.DWK_gnn import DWK_GNN
+from .reveal.REVEAL_data_module import RevealDataModule
+from .reveal.REVEAL_ggnn import ClassifyModel as RevealModel
 __all__ = [
     "TOKEN_BLSTM", "VDP_BLSTM", "SYS_BGRU", "SYSDataModule", "VGD_GNN",
     "TokenDataModule", "VDPDataModule", "VGDDataModule", "MulVDP_BLSTM",
     "MulVDPDataModule", "Code2SeqAttn", "C2SPathContextDataModule",
-    "Code2VecAttn", "C2VPathContextDataModule"
+    "Code2VecAttn", "C2VPathContextDataModule", "DWKDataModule", "DWK_GNN", "RevealDataModule", "RevealModel"
 ]
