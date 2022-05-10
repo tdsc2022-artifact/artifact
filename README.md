@@ -17,7 +17,10 @@
 | ReVeal          | Deep Learning based Vulnerability Detection: Are We There Yet? |
 | Vgdetector      | Static Detection of Control-Flow-Related Vulnerabilities Using Graph Embedding |
 | token embedding | Automated vulnerability detection in source code using deep representation |
-
+| IVDetect      | Vulnerability Detection with Fine-Grained Interpretations    |
+| VulDeeLocator | VulDeeLocator: A Deep Learning-based Fine-grained Vulnerability Detector |
+| ICVH          | Information-theoretic Source Code Vulnerability Highlighting |
+| VELVET        | VELVET: a noVel Ensemble Learning approach to automatically locate VulnErable sTatements |
 *The framework contains four directories: config/ , models/ , preprocessing/ , utils/*
 
  `config: All parameter settings. `
@@ -38,14 +41,4 @@
 
 *you can find it here [old Joern](https://github.com/ives-nx/dwk_preprocess/tree/main/joern_slicer/joern)*
 
-### For the latest methods that combine the interpretation of vulnerability detection results, like IVDETECT, ICVH, VulDeeLocator and VELVET, we do not integrate them in the framework, but use the toolkit provided in their papers.
-
-| methods       | paper                                                        |
-| ------------- | ------------------------------------------------------------ |
-| IVDetect      | Vulnerability Detection with Fine-Grained Interpretations    |
-| VulDeeLocator | VulDeeLocator: A Deep Learning-based Fine-grained Vulnerability Detector |
-| ICVH          | Information-theoretic Source Code Vulnerability Highlighting |
-| VELVET        | VELVET: a noVel Ensemble Learning approach to automatically locate VulnErable sTatements |
-
-`unintegrated_models: Contains the code implementation of the methods in the above table.`
 
