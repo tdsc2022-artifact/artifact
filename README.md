@@ -21,6 +21,7 @@
 | VulDeeLocator | VulDeeLocator: A Deep Learning-based Fine-grained Vulnerability Detector |
 | ICVH          | Information-theoretic Source Code Vulnerability Highlighting |
 | VELVET        | VELVET: a noVel Ensemble Learning approach to automatically locate VulnErable sTatements |
+
 *The framework contains four directories: config/ , models/ , preprocessing/ , utils/*
 
  `config: All parameter settings. `
